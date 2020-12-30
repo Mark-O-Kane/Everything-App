@@ -1,0 +1,10 @@
+C:\Users\Mark\source\repos\Software\Everything App\bin\Debug\Everything App.exe.config
+C:\Users\Mark\source\repos\Software\Everything App\bin\Debug\Everything App.exe
+C:\Users\Mark\source\repos\Software\Everything App\bin\Debug\Everything App.pdb
+C:\Users\Mark\source\repos\Software\Everything App\obj\Debug\Everything App.csprojAssemblyReference.cache
+C:\Users\Mark\source\repos\Software\Everything App\obj\Debug\Everything_App.Form1.resources
+C:\Users\Mark\source\repos\Software\Everything App\obj\Debug\Everything_App.Properties.Resources.resources
+C:\Users\Mark\source\repos\Software\Everything App\obj\Debug\Everything App.csproj.GenerateResource.cache
+C:\Users\Mark\source\repos\Software\Everything App\obj\Debug\Everything App.csproj.CoreCompileInputs.cache
+C:\Users\Mark\source\repos\Software\Everything App\obj\Debug\Everything App.exe
+C:\Users\Mark\source\repos\Software\Everything App\obj\Debug\Everything App.pdb

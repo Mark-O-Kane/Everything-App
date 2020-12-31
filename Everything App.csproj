@@ -63,6 +63,9 @@
     <EmbeddedResource Include="Initial-Form.resx">
       <DependentUpon>Initial-Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Password-Manager.resx">
+      <DependentUpon>Password-Manager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

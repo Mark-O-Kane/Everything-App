@@ -8,3 +8,4 @@ C:\Users\Mark\source\repos\Software\Everything App\obj\Debug\Everything App.cspr
 C:\Users\Mark\source\repos\Software\Everything App\obj\Debug\Everything App.csproj.CoreCompileInputs.cache
 C:\Users\Mark\source\repos\Software\Everything App\obj\Debug\Everything App.exe
 C:\Users\Mark\source\repos\Software\Everything App\obj\Debug\Everything App.pdb
+C:\Users\Mark\source\repos\Software\Everything App\obj\Debug\Everything_App.Password_Manager.resources

@@ -157,14 +157,12 @@ namespace Everything_App
             {
                 this.Size = new Size(837, 570);
                 txtGenLog.Visible = false;
-                lblPasswordJokes.Visible = true;
                 btnLogDisplay.Text = "Show Log";
             }
             else
             {
                 this.Size = new Size(1127, 570);
                 txtGenLog.Visible = true;
-                lblPasswordJokes.Visible = false;
                 btnLogDisplay.Text = "Hide Log";
             }
         }
@@ -176,9 +174,8 @@ namespace Everything_App
             btnLogDisplay.Enabled = true;
             tabControl1.Visible = true;
             tabControl1.TabPages.Remove(tabPasswordGenerator);
-            tabControl1.TabPages.Remove(tabAddDelete);
-            tabControl1.TabPages.Remove(tabPasswordChecker);
             tabControl1.TabPages.Add(tabPasswordGenerator);
+            btnLogDisplay.PerformClick();
         }
 
         private void btnShrink_Click(object sender, EventArgs e)
@@ -195,10 +192,7 @@ namespace Everything_App
             btnShrink.Enabled = true;
             btnLogDisplay.Enabled = true;
             tabControl1.Visible = true;
-            tabControl1.TabPages.Remove(tabPasswordChecker);
-            tabControl1.TabPages.Remove(tabAddDelete);
             tabControl1.TabPages.Remove(tabPasswordGenerator);
-            tabControl1.TabPages.Add(tabPasswordChecker);
         }
 
         private void btnAddDelete_Click(object sender, EventArgs e)
@@ -208,139 +202,26 @@ namespace Everything_App
             btnLogDisplay.Enabled = true;
             tabControl1.Visible = true;
             tabControl1.TabPages.Remove(tabPasswordGenerator);
-            tabControl1.TabPages.Remove(tabPasswordChecker);
-            tabControl1.TabPages.Remove(tabAddDelete);
-            tabControl1.TabPages.Add(tabAddDelete);
             
         }
 
-        private void radDelete_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radDelete.Checked)
-            {
-                panelAdd.Enabled = false;
-                panelDelete.Enabled = true;
-            }
-            else
-            {
-                panelAdd.Enabled = true;
-                panelDelete.Enabled = false;
-            }
-        }
+        //private void DisplayEmptyFieldInfo(int v, TextBox textbox)
+        //{
+        //    textbox.ForeColor = Color.Red;
+        //    textbox.Font = new Font(this.Font, FontStyle.Bold);
 
-        private void btnAddPassword_Click(object sender, EventArgs e)
-        {
-            int getGroupdID = GetGroupIdByName(comboGroup.SelectedItem.ToString());
-            string referenceName = GetRefName(txtReferenceName.Text);
-            string password = GetEnteredPassword(txtPassword.Text);
-            if (referenceName == "no entry" || password == "no entry") //stop execution if either of these fields are blank
-            {
-                return;
-            }
-            InsertPasswordToDatabase(getGroupdID, referenceName, password);
-        }
-
-        private void InsertPasswordToDatabase(int getGroupdID, string referenceName, string password)
-        {
-            bool success = true;
-            string sqlConnectionString = "Data Source=.;Initial Catalog=EverythingApp;Persist Security Info=True;Integrated Security=true;";
-            SqlConnection sqlConnection = new SqlConnection(sqlConnectionString);
-            try
-            {
-                sqlConnection.Open();
-                string insertQuery = $"INSERT INTO dev_tblPasswords (GroupID, ReferenceName, [Password], ExtraDetails)" +
-                                    $"VALUES ({getGroupdID}, '{referenceName}', HASHBYTES('SHA2_512','{password}'), NULL)";
-                SqlCommand insertPassword = new SqlCommand(insertQuery);
-                insertPassword.Connection = sqlConnection;
-                try
-                {
-                    insertPassword.ExecuteNonQuery();
-                }
-                catch(Exception e)
-                {
-                    success = false;
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show($"Error accessing database.\n\n{e.Message}");
-                success = false;
-            }
-            finally
-            {
-                sqlConnection.Close();
-            }
-            if (success)
-            {
-                MessageBox.Show("New Entry Added.");
-            }
-            else
-            {
-                MessageBox.Show("Couldnt insert to database.");
-            }
-        }
-
-        private string GetEnteredPassword(string text)
-        {
-            if (String.IsNullOrWhiteSpace(text))
-            {               
-                DisplayEmptyFieldInfo(1000, txtPassword);
-                return "no entry";
-            }
-            else
-                return text;
-        }
-
-        private string GetRefName(string text)
-        {
-            if (String.IsNullOrWhiteSpace(text))
-            {
-                DisplayEmptyFieldInfo(1000, txtReferenceName);
-                return "no entry";
-            }
-            else
-                return text;
-        }
-
-        private void DisplayEmptyFieldInfo(int v, TextBox textbox)
-        {
-            textbox.ForeColor = Color.Red;
-            textbox.Font = new Font(this.Font, FontStyle.Bold);
-
-            System.Timers.Timer time = new System.Timers.Timer(v);
-            time.Enabled = false;
-            time.Elapsed += new ElapsedEventHandler(timeElapsed);
-            void timeElapsed(object send, ElapsedEventArgs ev)
-            {
-                textbox.Text = String.Empty;
-                textbox.ForeColor = Color.Black;
-                textbox.Font = new Font(this.Font, FontStyle.Regular);
-                time.Enabled = false;
-            }
-            time.Enabled = true;
-            textbox.Text = "***Field cannot be blank***";
-        }
-
-        private int GetGroupIdByName(string selectedItem)
-        {
-            string item = selectedItem.ToUpper();
-            switch (item)
-            {
-                case "ONLINE BANKING":
-                    return 1;
-                case "PIN NUMBERS":
-                    return 2;
-                case "EMAIL":
-                    return 3;
-                case "SOCIAL MEDIA":
-                    return 4;
-                case "ONLINE SHOPPING":
-                    return 5;
-                case "OTHER":
-                    return 6;
-                default:
-                    return 6;
-            }
-        }
+        //    System.Timers.Timer time = new System.Timers.Timer(v);
+        //    time.Enabled = false;
+        //    time.Elapsed += new ElapsedEventHandler(timeElapsed);
+        //    void timeElapsed(object send, ElapsedEventArgs ev)
+        //    {
+        //        textbox.Text = String.Empty;
+        //        textbox.ForeColor = Color.Black;
+        //        textbox.Font = new Font(this.Font, FontStyle.Regular);
+        //        time.Enabled = false;
+        //    }
+        //    time.Enabled = true;
+        //    textbox.Text = "***Field cannot be blank***";
+        //}
     }
 }
